@@ -7,28 +7,56 @@ public class Morgagecalculator {
         Locale bdlocale = Locale.of("en","BD");
         System.out.println("==Mortgage Calculator==");
         Scanner sc = new Scanner(System.in);
-
         
+        double salary = 0;
+        while (true){
         System.out.print("Enter Salary: ");
-        double salary = sc.nextDouble();
+        if(sc.hasNextDouble()){
+        salary = sc.nextDouble();
+        break;
+        }else{
+            System.out.println("Invalid input.Please enter a numeric value.");
+            sc.next();
+        }
+        }
+        
          if (salary>=40000) {
             System.out.println("Next");
         }
         else{System.out.println("You are not elegible for loan.");}
         
-        
+        double credit = 0;
+        while(true){
         System.out.print("Enter your cridet score: ");
-        double credit = sc.nextDouble();
+        if(sc.hasNextDouble()){
+        credit = sc.nextDouble();
+        if(credit >= 0 && credit <= 500){
+            break;
+        }else{
+            System.out.println("Your credit score must be between 0 and 500");
+            sc.next();
+        }
+    }
+}
+
         if(credit>=300 || credit==500){
             System.out.println("Next");
         }
         else{System.out.println("You are not elegible for loan.");}
-
-
+        
+        boolean record = false;
+        while(true){
         System.out.println("Criminal record: ");
-        boolean record = sc.nextBoolean();
+        if(sc.hasNextBoolean()){
+        record = sc.nextBoolean();
+        break;
+        }else{
+            System.out.println("Invalid input! Please type 'true'or 'false'.");
+            sc.next();
+        }
+    }
         if(record == true || record != false ){
-            System.out.println("You are not elegible for loan.");
+          System.out.println("You are not elegible for loan.");  
         }
          else {
         System.out.println("Next");
@@ -37,14 +65,45 @@ public class Morgagecalculator {
 
 
 
-
-        
+        int p = 0;
+        while(true){
         System.out.print("Enter Loan Amount(BDT): ");
-        int p = sc.nextInt();
+        if(sc.hasNextDouble()){
+        p = sc.nextInt();
+        
+        if(p <= salary*2){
+            break;
+        }
+        else{
+         System.out.println("You are not elegible for loan.");
+        }
+    }else{
+        System.out.println("Invalid input! Please enter numeric value.");
+        sc.next();
+    }
+}
+        float R = 0;
+        while(true){
         System.out.print("Enter Annual Interest Rate: ");
-        float R = sc.nextFloat();
+        if(sc.hasNextFloat()){
+        R = sc.nextFloat();
+        break;
+        }else{
+           System.out.println("Invalid input! Please enter numeric value."); 
+           sc.next();
+        }
+    }
+    int n = 0;
+    while(true){
         System.out.print("Enter Loan Period: " );
-        int n = sc.nextInt();
+        if(sc.hasNextInt()){
+        n = sc.nextInt();
+        break;
+        }else{
+           System.out.println("Invalid input! Please enter numeric value.");
+           sc.next(); 
+        }
+    }
 
         double r = R/100;
         double M =p+ p*(r*Math.pow((1+(r)),n))/(Math.pow( (1+(r)) , n)-1);
